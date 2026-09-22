@@ -1,4 +1,17 @@
 {
   "schema_version": 1,
-  "plugins": []
+  "plugins": [
+    {
+      "id": "sample-normalizer",
+      "name": "Sample Normalizer",
+      "description": "Writes configured request body fields before the upstream call, for example service_tier: priority.",
+      "author": "neilforest7",
+      "repository": "https://github.com/neilforest7/cpa-plugin-template",
+      "homepage": "https://github.com/neilforest7/cpa-plugin-template",
+      "license": "MIT",
+      "tags": [
+        "normalizer"
+      ]
+    }
+  ]
 }
