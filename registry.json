@@ -12,6 +12,19 @@
       "tags": [
         "normalizer"
       ]
+    },
+    {
+      "id": "mimo-cliproxyapi",
+      "name": "MiMo Provider",
+      "description": "CLIProxyAPI provider plugin for Xiaomi MiMo: Chat Completions executor, API-key auth and the V2.6 model catalog",
+      "author": "neilforest7",
+      "repository": "https://github.com/neilforest7/mimo-cliproxyapi",
+      "homepage": "https://github.com/neilforest7/mimo-cliproxyapi",
+      "license": "MIT",
+      "tags": [
+        "provider",
+        "xiaomi"
+      ]
     }
   ]
 }
