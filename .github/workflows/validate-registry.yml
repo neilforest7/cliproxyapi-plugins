@@ -1,0 +1,22 @@
+name: validate-registry
+
+on:
+  push:
+    paths:
+      - registry.json
+      - scripts/validate_registry.py
+      - .github/workflows/validate-registry.yml
+  pull_request:
+    paths:
+      - registry.json
+      - scripts/validate_registry.py
+      - .github/workflows/validate-registry.yml
+  workflow_dispatch:
+
+jobs:
+  registry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - run: python3 scripts/validate_registry.py --self-check
+      - run: python3 scripts/validate_registry.py registry.json
