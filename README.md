@@ -98,14 +98,31 @@ python3 scripts/validate_registry.py registry.json
 ```
 
 `scripts/validate_registry.py` mirrors the upstream parser and validator in
-`internal/pluginstore/registry.go`. CI runs both commands on every change to
-`registry.json`.
+`internal/pluginstore/registry.go`. CI runs both commands plus the `add-plugin.py`
+self-check on every change to `registry.json`.
 
 ## Get a plugin listed
 
-Open a pull request that adds one entry to `registry.json` and include the
-release tag, evidence that the zip asset and `checksums.txt` exist in that
-release, and one line about the capability the plugin adds.
+Once the plugin repository has a release, one command derives the entry from it and
+updates `registry.json`:
+
+```bash
+python3 scripts/add-plugin.py neilforest7/mimo-cliproxyapi \
+  --name "MiMo Provider" \
+  --description "Xiaomi MiMo provider: Chat Completions executor, API-key auth and the V2.6 catalog." \
+  --tags provider,xiaomi
+```
+
+It reads the repository's latest release and repository metadata through the GitHub API
+(the `gh` CLI when available), takes the `id` from the release asset names
+(`<id>_<version>_<goos>_<goarch>.zip`), and replaces any existing entry with the same id
+or repository. `--dry-run` prints the entry without writing, `--self-check` verifies the
+derivation rules. Pass `--description` whenever the plugin repository has no description
+of its own.
+
+The entry lands in `registry.json`; commit and push it (a pull request is equally fine).
+The store reads the repository's latest release, so later versions only need a new tag in
+the plugin repository.
 
 ## 中文速览
 
